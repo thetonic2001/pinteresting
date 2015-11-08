@@ -1,36 +1,14 @@
 <%= render 'pages/home' unless user_signed_in? %>
 
 <%= form_tag search_pins_path, method: :get do %>
-             <div class="field">
-               <%= label_tag :description %>
-               <%= text_field_tag :description, params[:discription], placeholder: "Enter caption search term" %>
-              <%= submit_tag "Search", name: nil, class: "btn btn-success" %>
-              <%= link_to 'Clear', search_pins_path, class: 'btn btn-danger' %>
-            </div>
-        <% end %>
+  <div class="field">
+   <%= label_tag :description %>
+   <%= text_field_tag :description, params[:discription], placeholder: "Enter caption search term" %>
+  <%= submit_tag "Search", name: nil, class: "btn btn-success" %>
+  <%= link_to 'Clear', search_pins_path, class: 'btn btn-danger' %>
+  </div>
+<% end %>
 
-<div id="pins" class="transitions-enabled">
-  <% @pins.each do |pin| %>
-    <div class="box panel panel-default">
-      <%= link_to image_tag(pin.image.url(:medium)), pin %>
-      <div class="panel-body">
-        <p><%= pin.description %></p>
-        <p><strong><%= pin.user.profile_name if pin.user%></strong></p>
-        <% if pin.user == current_user %>
-          <div class="actions">
-            <%= link_to edit_pin_path(pin) do %>
-              <span class="glyphicon glyphicon-edit"></span> Edit
-            <% end %>
-            | <%= link_to pin, method: :delete, data: { confirm: 'Are you sure?' } do %>
-              <span class="glyphicon glyphicon-trash"></span> Delete
-            <% end %>
-          </div>
-        <% end %>
-      </div>
-    </div>
-  <% end %>
-</div>
+<%= render partial: 'pin_info' %>
 
-<div class="center">
-  <%= will_paginate @pins, renderer: BootstrapPagination::Rails %>
-</div>
+  
