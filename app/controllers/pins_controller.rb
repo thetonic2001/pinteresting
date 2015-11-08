@@ -11,6 +11,13 @@ class PinsController < ApplicationController
   def show
   end
 
+  def search
+    if params[:description].present?
+        @pins = Pin.where("LOWER(description) like ?", "%%#{params[:description].downcase}%") if params[:description].present? 
+   end
+   @pins = @pins.paginate(:page => params[:page], :per_page => 2)
+  end
+
   def new
     @pin = current_user.pins.build
   end

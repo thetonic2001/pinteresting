@@ -1,14 +1,5 @@
 <%= render 'pages/home' unless user_signed_in? %>
 
-<%= form_tag search_pins_path, method: :get do %>
-             <div class="field">
-               <%= label_tag :description %>
-               <%= text_field_tag :description, params[:discription], placeholder: "Enter caption search term" %>
-              <%= submit_tag "Search", name: nil, class: "btn btn-success" %>
-              <%= link_to 'Clear', search_pins_path, class: 'btn btn-danger' %>
-            </div>
-        <% end %>
-
 <div id="pins" class="transitions-enabled">
   <% @pins.each do |pin| %>
     <div class="box panel panel-default">

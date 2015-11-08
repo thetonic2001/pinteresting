@@ -1,5 +1,9 @@
 Pinteresting::Application.routes.draw do
-  resources :pins
+  resources :pins do
+   collection do
+    get 'search' 
+   end
+  end
 
   devise_for :users
  root 'pins#index'
