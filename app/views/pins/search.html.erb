@@ -1,6 +1,6 @@
 <%= render 'pages/home' unless user_signed_in? %>
 
-<% if @pins.empty? %>
+<% if @pins.blank? %>
 	<h2>Sorry no results found.</h2>
 <% else %>
 	<%= render partial: 'pin_info' %>

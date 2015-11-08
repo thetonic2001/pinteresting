@@ -5,7 +5,7 @@ class PinsController < ApplicationController
 
   
   def index
-    @pins = Pin.all.order("created_at DESC").paginate(:page => params[:page], :per_page => 2)
+    @pins = Pin.all.order("created_at DESC").paginate(:page => params[:page], :per_page => 20)
   end
 
   def show
@@ -13,9 +13,9 @@ class PinsController < ApplicationController
 
   def search
     if params[:description].present?
-        @pins = Pin.where("LOWER(description) like ?", "%%#{params[:description].downcase}%") if params[:description].present? 
-   end
-    @pins = @pins.paginate(:page => params[:page], :per_page => 2)
+      @pins = Pin.where("LOWER(description) like ?", "%%#{params[:description].downcase}%") if params[:description].present? 
+      @pins = @pins.paginate(:page => params[:page], :per_page => 20)
+    end
   end
 
   def new

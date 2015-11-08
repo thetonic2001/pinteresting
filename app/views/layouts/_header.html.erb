@@ -9,11 +9,15 @@
         <span class="icon-bar"></span>
       </button>
       <%= link_to "Pinteresting", root_path, class: "navbar-brand" %>
-    </div>
+   
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse navbar-ex1-collapse">
       <ul class="nav navbar-nav navbar-right">
+        <li><%= form_tag(search_pins_path, method: :get, html: {class: 'form-group'}) do %>
+          <%= text_field_tag :description, params[:discription], placeholder: "Enter caption search term" %>
+          <%= submit_tag "Search", name: nil, class: "btn btn-success" %>
+        <% end %></li>
         <li><%= link_to "Home", root_path %> </li>
         <li><%= link_to "About Us", about_path %> </li>
           <% if user_signed_in? %>
